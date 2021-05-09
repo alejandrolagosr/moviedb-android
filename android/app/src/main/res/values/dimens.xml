@@ -5,4 +5,22 @@
     <dimen name="no_width">0dp</dimen>
     <dimen name="no_height">0dp</dimen>
 
+    <!-- Padding -->
+    <dimen name="padding_all_5">5dp</dimen>
+
+    <!-- Height -->
+    <dimen name="height_playing_now_image">160dp</dimen>
+
+    <!-- Width -->
+    <dimen name="width_playing_now_image">106dp</dimen>
+
+    <!-- Elevation -->
+    <dimen name="elevation_action_bar">0dp</dimen>
+
+    <!-- Font Size -->
+    <dimen name="font_size_toolbar">20sp</dimen>
+
+    <!-- Letter Spacing -->
+    <dimen name="letter_spacing_default">0.02</dimen>
+
 </resources>
