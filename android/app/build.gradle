@@ -43,6 +43,9 @@ android {
 }
 
 dependencies {
+    api project(':data')
+    api project(':common')
+
     def generalDependencies = rootProject.ext.generalDependencies
     implementation generalDependencies.kotlin
     implementation generalDependencies.coreKtx
