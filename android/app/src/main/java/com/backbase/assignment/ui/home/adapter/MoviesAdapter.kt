@@ -1,4 +1,4 @@
-package com.backbase.assignment.ui.movie
+package com.backbase.assignment.ui.home.adapter
 
 import android.net.Uri
 import android.view.LayoutInflater
