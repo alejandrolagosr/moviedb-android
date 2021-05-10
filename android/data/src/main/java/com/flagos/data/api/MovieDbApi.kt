@@ -1,7 +1,9 @@
 package com.flagos.data.api
 
+import com.flagos.data.model.MovieDetailData
 import com.flagos.data.model.MoviesData
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 private const val DEFAULT_LANGUAGE = "en-US"
 private const val NO_PAGING = "undefined"
@@ -14,4 +16,7 @@ interface MovieDbApi {
 
     @GET("movie/popular?language=${DEFAULT_LANGUAGE}&api_key=${API_KEY}&page=1")
     suspend fun getMostPopularMovies(): MoviesData
+
+    @GET("movie/{movieId}?language=${DEFAULT_LANGUAGE}&api_key=${API_KEY}")
+    suspend fun getMovieDetail(@Path("movieId") movieId: Int): MovieDetailData
 }
