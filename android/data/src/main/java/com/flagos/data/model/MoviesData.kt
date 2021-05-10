@@ -2,7 +2,7 @@ package com.flagos.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class NowPlayingData(
+data class MoviesData(
     @SerializedName("dates") val dates: Dates,
     @SerializedName("page") val page: Int,
     @SerializedName("results") val results: List<Results>,
