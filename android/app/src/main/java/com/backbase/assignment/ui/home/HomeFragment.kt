@@ -7,9 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.backbase.assignment.R
 import com.backbase.assignment.databinding.FragmentHomeBinding
+import com.backbase.assignment.ui.home.adapter.MostPopularAdapter
 import com.backbase.assignment.ui.home.adapter.PlayingNowAdapter
+import com.backbase.assignment.ui.home.model.MostPopularItem
+import com.backbase.assignment.ui.home.model.MovieImageItem
 import com.flagos.common.getViewModel
 import com.flagos.data.api.ApiHelper
 import com.flagos.data.api.RetrofitBuilder
@@ -22,6 +26,7 @@ class HomeFragment : Fragment() {
     private val viewModel by lazy { getViewModel { HomeViewModel(movieDbRepository) } }
 
     private lateinit var playingNowAdapter: PlayingNowAdapter
+    private lateinit var mostPopularAdapter: MostPopularAdapter
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -39,10 +44,14 @@ class HomeFragment : Fragment() {
 
     private fun initViews() {
         playingNowAdapter = PlayingNowAdapter { goToMovieDetail(it) }
+        mostPopularAdapter = MostPopularAdapter { goToMovieDetail(it) }
 
         with(binding) {
             recyclerPlayingNow.adapter = playingNowAdapter
-            sectionPlayingNow.textSectionTitle.text = getString(R.string.text_playing_now)
+            recyclerMostPopular.apply {
+                addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+                adapter = mostPopularAdapter
+            }
         }
     }
 
@@ -53,9 +62,18 @@ class HomeFragment : Fragment() {
 
     private fun initObservers() {
         with(viewModel) {
-            //TODO: Check if we can set with init func.
-            fetchPlayingNow()
-            onPlayingNowMoviesRetrieved.observe(viewLifecycleOwner, { playingNowAdapter.submitList(it) })
+            onPlayingNowMoviesRetrieved.observe(viewLifecycleOwner, { setPlayingNowSection(it) })
+            onMostPopularMoviesRetrieved.observe(viewLifecycleOwner, { setMostPopularSection(it) })
         }
+    }
+
+    private fun setPlayingNowSection(items: List<MovieImageItem>) {
+        binding.sectionPlayingNow.textSectionTitle.text = getString(R.string.text_playing_now)
+        playingNowAdapter.submitList(items)
+    }
+
+    private fun setMostPopularSection(items: List<MostPopularItem>) {
+        binding.sectionMostPopular.textSectionTitle.text = getString(R.string.text_most_popular)
+        mostPopularAdapter.submitList(items)
     }
 }

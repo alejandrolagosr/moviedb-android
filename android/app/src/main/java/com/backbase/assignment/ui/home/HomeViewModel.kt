@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.backbase.assignment.ui.home.mapper.MoviesUiMapper
+import com.backbase.assignment.ui.home.model.MostPopularItem
 import com.backbase.assignment.ui.home.model.MovieImageItem
 import com.flagos.data.repository.MovieDbRepository
 import kotlinx.coroutines.Dispatchers
@@ -21,8 +22,16 @@ class HomeViewModel(
     val onPlayingNowMoviesRetrieved: LiveData<List<MovieImageItem>>
         get() = _onPlayingNowMoviesRetrieved
 
-    fun fetchPlayingNow() {
+    private var _onMostPopularMoviesRetrieved = MutableLiveData<List<MostPopularItem>>()
+    val onMostPopularMoviesRetrieved: LiveData<List<MostPopularItem>>
+        get() = _onMostPopularMoviesRetrieved
 
+    init {
+        fetchPlayingNow()
+        fetchMostPopular()
+    }
+
+    private fun fetchPlayingNow() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 _onPlayingNowMoviesRetrieved.postValue(
@@ -31,9 +40,26 @@ class HomeViewModel(
                     )
                 )
             } catch (e: Exception) {
-                Log.d("TAGxxx", "fetchPlayingNow: $e")
+                e.printStackTrace()
             }
         }
     }
 
+    private fun fetchMostPopular() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                _onMostPopularMoviesRetrieved.postValue(
+                    moviesUiMapper.toMostPopularItemList(
+                        movieDbRepository.getMostPopularMovies().results
+                    )
+                )
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    companion object {
+        const val POSTER_PATH = "https://image.tmdb.org/t/p/original/"
+    }
 }

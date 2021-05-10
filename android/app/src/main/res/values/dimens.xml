@@ -4,15 +4,22 @@
     <!-- General -->
     <dimen name="no_width">0dp</dimen>
     <dimen name="no_height">0dp</dimen>
+    <dimen name="match_constraint">0dp</dimen>
 
     <!-- Padding -->
     <dimen name="padding_all_5">5dp</dimen>
+    <dimen name="padding_all_10">10dp</dimen>
+
+    <!-- Margin -->
+    <dimen name="margin_all_10">10dp</dimen>
 
     <!-- Height -->
     <dimen name="height_playing_now_image">160dp</dimen>
+    <dimen name="height_most_popular_image">71dp</dimen>
 
     <!-- Width -->
     <dimen name="width_playing_now_image">106dp</dimen>
+    <dimen name="width_most_popular_image">47dp</dimen>
 
     <!-- Elevation -->
     <dimen name="elevation_action_bar">0dp</dimen>

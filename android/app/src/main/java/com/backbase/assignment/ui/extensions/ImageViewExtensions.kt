@@ -5,7 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.ImageView
-import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import com.backbase.assignment.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -18,11 +18,12 @@ import com.facebook.shimmer.ShimmerFrameLayout
 private const val NO_RESOURCE_ID = 0
 private const val SHIMMER_RUNNABLE_DELAY = 50L
 
-fun ImageView.loadImageFromUrl(url: String, @DrawableRes placeHolder: Int = NO_RESOURCE_ID, @DrawableRes errorImage: Int = NO_RESOURCE_ID) {
+fun ImageView.loadImageFromUrl(url: String) {
+    val grayResId = ContextCompat.getDrawable(context, R.color.gray)
     Glide.with(this)
         .load(url)
-        .placeholder(placeHolder)
-        .error(errorImage)
+        .placeholder(grayResId)
+        .error(grayResId)
         .into(this)
 }
 
