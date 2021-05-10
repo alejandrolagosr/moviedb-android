@@ -9,23 +9,28 @@
     <!-- Padding -->
     <dimen name="padding_all_5">5dp</dimen>
     <dimen name="padding_all_10">10dp</dimen>
+    <dimen name="padding_all_20">20dp</dimen>
 
     <!-- Margin -->
+    <dimen name="margin_all_5">5dp</dimen>
     <dimen name="margin_all_10">10dp</dimen>
 
     <!-- Height -->
     <dimen name="height_playing_now_image">160dp</dimen>
     <dimen name="height_most_popular_image">71dp</dimen>
+    <dimen name="height_detail_image">201dp</dimen>
 
     <!-- Width -->
     <dimen name="width_playing_now_image">106dp</dimen>
     <dimen name="width_most_popular_image">47dp</dimen>
+    <dimen name="width_detail_image">135dp</dimen>
 
     <!-- Elevation -->
     <dimen name="elevation_action_bar">0dp</dimen>
 
     <!-- Font Size -->
     <dimen name="font_size_toolbar">20sp</dimen>
+    <dimen name="font_size_title">16sp</dimen>
 
     <!-- Letter Spacing -->
     <dimen name="letter_spacing_default">0.02</dimen>

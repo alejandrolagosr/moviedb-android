@@ -8,13 +8,13 @@
     </style>
 
     <style name="TextAppearance.Common" parent="Base.TextAppearance.AppCompat">
-        <item name="android:textColor">@color/yellow</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">@dimen/letter_spacing_default</item>
     </style>
 
     <!-- Toolbar -->
     <style name="TextAppearance.Toolbar.Title" parent="TextAppearance.Common">
+        <item name="android:textColor">@color/yellow</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/font_size_toolbar</item>
@@ -23,5 +23,20 @@
         <item name="android:layout_gravity">center</item>
     </style>
 
+    <!-- Texts -->
+    <style name="TextAppearance.Title" parent="TextAppearance.Common">
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/font_size_title</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextAppearance.Normal" parent="TextAppearance.Common">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/font_size_title</item>
+    </style>
 
 </resources>
