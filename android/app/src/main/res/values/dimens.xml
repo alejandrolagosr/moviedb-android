@@ -30,7 +30,7 @@
     <dimen name="elevation_action_bar">0dp</dimen>
 
     <!-- Font Size -->
-    <dimen name="font_size_toolbar">20sp</dimen>
+    <dimen name="font_size_toolbar">22sp</dimen>
     <dimen name="font_size_title">16sp</dimen>
 
     <!-- Letter Spacing -->

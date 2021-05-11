@@ -1,10 +1,11 @@
 package com.backbase.assignment.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -68,12 +69,19 @@ class HomeFragment : Fragment() {
     }
 
     private fun setPlayingNowSection(items: List<MovieImageItem>) {
-        binding.sectionPlayingNow.textSectionTitle.text = getString(R.string.text_playing_now)
+        with(binding) {
+            sectionPlayingNow.textSectionTitle.text = getString(R.string.text_playing_now)
+            sectionPlayingNow.root.visibility = VISIBLE
+        }
         playingNowAdapter.submitList(items)
     }
 
     private fun setMostPopularSection(items: List<MostPopularItem>) {
-        binding.sectionMostPopular.textSectionTitle.text = getString(R.string.text_most_popular)
+        with(binding) {
+            sectionMostPopular.textSectionTitle.text = getString(R.string.text_most_popular)
+            sectionMostPopular.root.visibility = VISIBLE
+            layoutLoader.root.visibility = GONE
+        }
         mostPopularAdapter.submitList(items)
     }
 }
