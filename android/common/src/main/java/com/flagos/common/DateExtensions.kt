@@ -7,7 +7,7 @@ import java.util.Locale
 
 private const val NO_DATE = ""
 const val NORMAL_DATE = "yyyy-MM-dd"
-const val MOST_POPULAR_DATE = "MMMM dd, yyyy"
+const val UI_DATE = "MMMM dd, yyyy"
 const val PREFERENCE_FORCED_DATE_FORMAT = "dd/MM/yy"
 
 fun SimpleDateFormat.safeParse(date: String): Date? {

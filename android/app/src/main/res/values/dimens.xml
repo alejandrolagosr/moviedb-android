@@ -7,6 +7,7 @@
     <dimen name="match_constraint">0dp</dimen>
 
     <!-- Padding -->
+    <dimen name="padding_all_2">2dp</dimen>
     <dimen name="padding_all_5">5dp</dimen>
     <dimen name="padding_all_10">10dp</dimen>
     <dimen name="padding_all_20">20dp</dimen>
