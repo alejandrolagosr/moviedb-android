@@ -13,23 +13,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@color/gray" />
-
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer"
-        android:layout_width="@dimen/width_playing_now_image"
-        android:layout_height="@dimen/height_playing_now_image"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/image_playing_now"
-        app:layout_constraintEnd_toEndOf="@id/image_playing_now"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/image_playing_now"
-        app:shimmer_duration="@integer/shimmer_duration"
-        app:shimmer_tilt="@integer/shimmer_angle">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_columnWeight="@integer/shimmer_dept_column_weight"
-            android:background="@color/shimmer_color" />
-    </com.facebook.shimmer.ShimmerFrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

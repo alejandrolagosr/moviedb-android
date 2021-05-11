@@ -63,7 +63,6 @@ dependencies {
     implementation generalDependencies.navigationFragment
     implementation generalDependencies.glide
     implementation generalDependencies.paging
-    implementation generalDependencies.shimmer
 
     def annotationProcessor = rootProject.ext.annotationProcessor
     kapt annotationProcessor.glideCompiler

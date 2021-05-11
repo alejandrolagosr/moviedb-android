@@ -22,7 +22,6 @@ ext {
     multidex_version = '1.0.3'
     retrofit_version = '2.9.0'
     retrofit_gson_converter_version = '2.9.0'
-    shimmer_version = '0.5.0'
 
     junit_version = '4.13'
     espresso_version = '3.2.0'
@@ -52,8 +51,7 @@ ext {
             retrofit           : "com.squareup.retrofit2:retrofit:$retrofit_version",
             retrofit_converter : "com.squareup.retrofit2:converter-gson:$retrofit_gson_converter_version",
             glide              : "com.github.bumptech.glide:glide:$glide_version",
-            paging             : "androidx.paging:paging-runtime:$paging_version",
-            shimmer            : "com.facebook.shimmer:shimmer:$shimmer_version"
+            paging             : "androidx.paging:paging-runtime:$paging_version"
     ]
 
     testDependencies = [
