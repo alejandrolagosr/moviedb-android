@@ -1,6 +1,6 @@
 package com.backbase.assignment.ui.home.adapter.viewholder
 
-import android.view.View
+import android.view.View.VISIBLE
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.assignment.databinding.ItemMoviePlayingNowBinding
 import com.backbase.assignment.ui.extensions.loadImageFromUrlWithShimmering
@@ -23,7 +23,7 @@ class NowPlayingImageViewHolder(
         with(binding) {
             imagePlayingNow.loadImageFromUrlWithShimmering(POSTER_PATH.plus(item.posterPath), shimmer)
             shimmer.apply {
-                visibility = View.VISIBLE
+                visibility = VISIBLE
                 startShimmer()
             }
         }

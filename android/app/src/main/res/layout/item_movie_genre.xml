@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_all_10">
+    android:layout_marginTop="@dimen/margin_all_10"
+    android:layout_marginEnd="@dimen/margin_all_10"
+    android:layout_marginBottom="@dimen/margin_all_10">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_genre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/background_genre"
+        android:padding="@dimen/padding_all_5"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -53,7 +53,7 @@ class DetailFragment : Fragment() {
 
         val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                (requireActivity() as MainActivity).enableHomeUpButton(true)
+                (requireActivity() as MainActivity).enableHomeUpButton(false)
                 findNavController().navigateUp()
             }
         }
