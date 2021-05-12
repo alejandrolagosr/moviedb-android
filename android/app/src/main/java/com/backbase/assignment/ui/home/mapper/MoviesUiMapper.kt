@@ -7,6 +7,9 @@ import com.flagos.common.NORMAL_DATE
 import com.flagos.common.getFormattedDate
 import com.flagos.data.model.Results
 
+private const val BLANK = ""
+private const val DOT = "."
+
 class MoviesUiMapper {
 
     fun toNowPlayingItemList(results: List<Results>): List<MovieImageItem> {
@@ -20,8 +23,9 @@ class MoviesUiMapper {
     fun toMostPopularItemList(results: List<Results>): List<MostPopularItem> {
         return mutableListOf<MostPopularItem>().apply {
             results.forEach {
+                val percentage = it.voteAverage.toString().replace(DOT, BLANK).toInt()
                 val formattedDate = getFormattedDate(it.releaseDate, NORMAL_DATE, UI_DATE)
-                add(MostPopularItem(it.id, it.posterPath, it.title, formattedDate, it.voteAverage))
+                add(MostPopularItem(it.id, it.posterPath, it.title, formattedDate, percentage))
             }
         }
     }

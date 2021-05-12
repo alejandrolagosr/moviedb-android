@@ -39,4 +39,19 @@
         <item name="android:textSize">@dimen/font_size_title</item>
     </style>
 
+    <style name="TextAppearance.Rating" parent="TextAppearance.Common">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/font_size_rating</item>
+    </style>
+
+    <!-- Circular Progress -->
+    <style name="CircularProgressIndicator.Rating" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="trackColor">@color/gray</item>
+        <item name="trackCornerRadius">@dimen/circular_indicator_corner_radius</item>
+        <item name="trackThickness">@dimen/circular_indicator_track_thickness</item>
+    </style>
+
 </resources>

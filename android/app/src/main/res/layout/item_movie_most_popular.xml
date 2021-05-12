@@ -21,7 +21,7 @@
         android:layout_marginStart="@dimen/margin_all_10"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/text_movie_release_date"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/progress_movie_rating"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/image_movie"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,9 +33,30 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_all_10"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/progress_movie_rating"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/image_movie"
         app:layout_constraintTop_toBottomOf="@+id/text_movie_title"
         tools:text="31 Jan, 2021" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_movie_rating"
+        style="@style/CircularProgressIndicator.Rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:max="100"
+        tools:progress="30" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_movie_rating"
+        style="@style/TextAppearance.Rating"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/progress_movie_rating"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="30%" />
 </androidx.constraintlayout.widget.ConstraintLayout>
