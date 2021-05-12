@@ -14,5 +14,5 @@ dependencies {
     implementation generalDependencies.coreKtx
     implementation generalDependencies.coroutines
     implementation generalDependencies.retrofit
-    implementation generalDependencies.retrofit_converter
+    implementation generalDependencies.retrofitConverter
 }

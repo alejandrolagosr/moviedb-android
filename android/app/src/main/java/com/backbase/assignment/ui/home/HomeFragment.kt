@@ -7,24 +7,28 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.backbase.assignment.R
 import com.backbase.assignment.databinding.FragmentHomeBinding
 import com.backbase.assignment.ui.home.adapter.MostPopularAdapter
 import com.backbase.assignment.ui.home.adapter.PlayingNowAdapter
+import com.backbase.assignment.ui.home.mapper.MoviesUiMapper
 import com.backbase.assignment.ui.home.model.MostPopularItem
 import com.backbase.assignment.ui.home.model.MovieImageItem
 import com.flagos.common.getViewModel
 import com.flagos.data.api.ApiHelper
 import com.flagos.data.api.RetrofitBuilder
 import com.flagos.data.repository.MovieDbRepository
+import kotlinx.coroutines.flow.collectLatest
 
 class HomeFragment : Fragment() {
 
     private val apiHelper by lazy { ApiHelper(RetrofitBuilder.movieDbApi) }
     private val movieDbRepository by lazy { MovieDbRepository(apiHelper) }
-    private val viewModel by lazy { getViewModel { HomeViewModel(movieDbRepository) } }
+    private val viewModel by lazy { getViewModel { HomeViewModel(RetrofitBuilder.movieDbApi, movieDbRepository) } }
 
     private lateinit var playingNowAdapter: PlayingNowAdapter
     private lateinit var mostPopularAdapter: MostPopularAdapter
@@ -64,7 +68,9 @@ class HomeFragment : Fragment() {
     private fun initObservers() {
         with(viewModel) {
             onPlayingNowMoviesRetrieved.observe(viewLifecycleOwner, { setPlayingNowSection(it) })
-            onMostPopularMoviesRetrieved.observe(viewLifecycleOwner, { setMostPopularSection(it) })
+            viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+                movies.collectLatest { setMostPopularSection(it) }
+            }
         }
     }
 
@@ -76,12 +82,11 @@ class HomeFragment : Fragment() {
         playingNowAdapter.submitList(items)
     }
 
-    private fun setMostPopularSection(items: List<MostPopularItem>) {
+    private suspend fun setMostPopularSection(items: PagingData<MostPopularItem>) {
         with(binding) {
             sectionMostPopular.textSectionTitle.text = getString(R.string.text_most_popular)
             sectionMostPopular.root.visibility = VISIBLE
-            layoutLoader.root.visibility = GONE
+            mostPopularAdapter.submitData(items)
         }
-        mostPopularAdapter.submitList(items)
     }
 }

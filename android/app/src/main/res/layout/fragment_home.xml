@@ -9,8 +9,10 @@
     <include
         android:id="@+id/section_playing_now"
         layout="@layout/item_general_section_title"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_playing_now"
@@ -30,9 +32,11 @@
         layout="@layout/item_general_section_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/match_constraint"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recycler_playing_now" />
+        app:layout_constraintTop_toBottomOf="@+id/recycler_playing_now"
+        tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_most_popular"
@@ -44,9 +48,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/section_most_popular"
         tools:listitem="@layout/item_movie_most_popular" />
-
-    <include
-        android:id="@+id/layout_loader"
-        layout="@layout/layout_loader"
-        android:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

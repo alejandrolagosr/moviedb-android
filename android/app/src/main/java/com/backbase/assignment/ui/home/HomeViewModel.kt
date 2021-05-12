@@ -1,19 +1,25 @@
 package com.backbase.assignment.ui.home
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.backbase.assignment.ui.home.mapper.MoviesUiMapper
 import com.backbase.assignment.ui.home.model.MostPopularItem
 import com.backbase.assignment.ui.home.model.MovieImageItem
+import com.flagos.data.api.MovieDbApi
 import com.flagos.data.repository.MovieDbRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
+private const val PAGE_SIZE = 20
+private const val PREFETCH_DISTANCE = 2
+
 class HomeViewModel(
+    private val movieDbApi: MovieDbApi,
     private val movieDbRepository: MovieDbRepository,
     private val moviesUiMapper: MoviesUiMapper = MoviesUiMapper()
 ) : ViewModel() {
@@ -22,13 +28,12 @@ class HomeViewModel(
     val onPlayingNowMoviesRetrieved: LiveData<List<MovieImageItem>>
         get() = _onPlayingNowMoviesRetrieved
 
-    private var _onMostPopularMoviesRetrieved = MutableLiveData<List<MostPopularItem>>()
-    val onMostPopularMoviesRetrieved: LiveData<List<MostPopularItem>>
-        get() = _onMostPopularMoviesRetrieved
+    val movies: Flow<PagingData<MostPopularItem>> = Pager(PagingConfig(prefetchDistance = PREFETCH_DISTANCE, pageSize = PAGE_SIZE)) {
+        MostPopularPagingSource(movieDbApi, moviesUiMapper)
+    }.flow.cachedIn(viewModelScope)
 
     init {
         fetchPlayingNow()
-        fetchMostPopular()
     }
 
     private fun fetchPlayingNow() {
@@ -37,20 +42,6 @@ class HomeViewModel(
                 _onPlayingNowMoviesRetrieved.postValue(
                     moviesUiMapper.toNowPlayingItemList(
                         movieDbRepository.getNowPlayingMovies().results
-                    )
-                )
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
-
-    private fun fetchMostPopular() {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                _onMostPopularMoviesRetrieved.postValue(
-                    moviesUiMapper.toMostPopularItemList(
-                        movieDbRepository.getMostPopularMovies().results
                     )
                 )
             } catch (e: Exception) {

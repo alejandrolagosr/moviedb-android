@@ -6,7 +6,5 @@ class MovieDbRepository(private val apiHelper: ApiHelper) {
 
     suspend fun getNowPlayingMovies() = apiHelper.getNowPlayingMovies()
 
-    suspend fun getMostPopularMovies() = apiHelper.getMostPopularMovies()
-
     suspend fun getMovieDetail(movieId: Int) = apiHelper.getMovieDetail(movieId)
 }
