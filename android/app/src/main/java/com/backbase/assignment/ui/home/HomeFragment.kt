@@ -14,12 +14,13 @@ import com.backbase.assignment.R
 import com.backbase.assignment.databinding.FragmentHomeBinding
 import com.backbase.assignment.ui.home.adapter.MostPopularAdapter
 import com.backbase.assignment.ui.home.adapter.PlayingNowAdapter
-import com.backbase.assignment.ui.home.model.MostPopularItem
-import com.backbase.assignment.ui.home.model.MovieImageItem
+import com.flagos.framework.home.model.MostPopularItem
+import com.flagos.framework.home.model.NowPlayingItem
 import com.flagos.common.getViewModel
 import com.flagos.data.api.ApiHelper
 import com.flagos.data.api.RetrofitBuilder
 import com.flagos.data.repository.MovieDbRepository
+import com.flagos.framework.home.usecase.MovieDbUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -28,7 +29,8 @@ class HomeFragment : Fragment() {
 
     private val apiHelper by lazy { ApiHelper(RetrofitBuilder.movieDbApi) }
     private val movieDbRepository by lazy { MovieDbRepository(apiHelper) }
-    private val viewModel by lazy { getViewModel { HomeViewModel(RetrofitBuilder.movieDbApi, movieDbRepository) } }
+    private val movieDbUseCase by lazy { MovieDbUseCase(movieDbRepository) }
+    private val viewModel by lazy { getViewModel { HomeViewModel(movieDbUseCase, movieDbRepository) } }
 
     private lateinit var playingNowAdapter: PlayingNowAdapter
     private lateinit var mostPopularAdapter: MostPopularAdapter
@@ -70,11 +72,11 @@ class HomeFragment : Fragment() {
     private fun initObservers() {
         with(viewModel) {
             onPlayingNowMoviesRetrieved.observe(viewLifecycleOwner, { setPlayingNowSection(it) })
-            runGetMostPopularMovies { movies.collectLatest { setMostPopularSection(it) } }
+            runGetMostPopularMovies { fetchMostPopular().collectLatest { setMostPopularSection(it) } }
         }
     }
 
-    private fun setPlayingNowSection(items: List<MovieImageItem>) {
+    private fun setPlayingNowSection(items: List<NowPlayingItem>) {
         with(binding) {
             sectionPlayingNow.textSectionTitle.text = getString(R.string.text_playing_now)
             sectionPlayingNow.root.visibility = VISIBLE

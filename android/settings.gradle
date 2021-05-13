@@ -1,2 +1,2 @@
-include ':app', ':data', ':common'
+include ':app', ':data', ':common', ':framework'
 rootProject.name='CS Android Assignment'

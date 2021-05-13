@@ -1,8 +1,10 @@
 package com.flagos.data.api
 
-class ApiHelper(private val theMovieDbApi: MovieDbApi) {
+class ApiHelper(private val movieDbApi: MovieDbApi) {
 
-    suspend fun getNowPlayingMovies() = theMovieDbApi.getNowPlayingMovies()
+    suspend fun getNowPlayingMovies() = movieDbApi.getNowPlayingMovies()
 
-    suspend fun getMovieDetail(movieId: Int) = theMovieDbApi.getMovieDetail(movieId)
+    suspend fun getMostPopularMovies(page: Int) = movieDbApi.getMostPopularMovies(page)
+
+    suspend fun getMovieDetail(movieId: Int) = movieDbApi.getMovieDetail(movieId)
 }

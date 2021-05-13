@@ -3,11 +3,10 @@ package com.backbase.assignment.ui.home.adapter
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.assignment.databinding.ItemMovieMostPopularBinding
 import com.backbase.assignment.ui.home.adapter.viewholder.MostPopularViewHolder
-import com.backbase.assignment.ui.home.model.MostPopularItem
+import com.flagos.framework.home.model.MostPopularItem
 import com.flagos.common.inflater
 
 class MostPopularAdapter(private val onMovieClicked: (Int) -> Unit) :

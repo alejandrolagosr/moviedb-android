@@ -1,25 +1,27 @@
-package com.backbase.assignment.ui.home
+package com.flagos.framework.home.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.backbase.assignment.ui.home.mapper.MoviesUiMapper
-import com.backbase.assignment.ui.home.model.MostPopularItem
-import com.flagos.data.api.MovieDbApi
+import com.flagos.data.repository.MovieDbRepository
+import com.flagos.framework.home.mapper.MoviesUiMapper
+import com.flagos.framework.home.model.MostPopularItem
+
+private const val ONE_PAGE = 1
 
 class MostPopularPagingSource(
-    private val movieApiService: MovieDbApi,
+    private val movieDbRepository: MovieDbRepository,
     private val moviesUiMapper: MoviesUiMapper
 ) : PagingSource<Int, MostPopularItem>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MostPopularItem> {
         return try {
-            val nextPage = params.key ?: 1
-            val response = movieApiService.getMostPopularMovies(nextPage)
+            val nextPage = params.key ?: ONE_PAGE
+            val response = movieDbRepository.getMostPopularMovies(nextPage)
 
             LoadResult.Page(
                 data = moviesUiMapper.toMostPopularItemList(response.results),
-                prevKey = if (nextPage == 1) null else nextPage - 1,
-                nextKey = response.page + 1
+                prevKey = if (nextPage == ONE_PAGE) null else nextPage - ONE_PAGE,
+                nextKey = response.page + ONE_PAGE
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

@@ -1,21 +1,21 @@
-package com.backbase.assignment.ui.home.mapper
+package com.flagos.framework.home.mapper
 
-import com.backbase.assignment.ui.home.model.MostPopularItem
-import com.backbase.assignment.ui.home.model.MovieImageItem
 import com.flagos.common.UI_DATE
 import com.flagos.common.NORMAL_DATE
 import com.flagos.common.getFormattedDate
 import com.flagos.data.model.Results
+import com.flagos.framework.home.model.MostPopularItem
+import com.flagos.framework.home.model.NowPlayingItem
 
 private const val BLANK = ""
 private const val DOT = "."
 
 class MoviesUiMapper {
 
-    fun toNowPlayingItemList(results: List<Results>): List<MovieImageItem> {
-        return mutableListOf<MovieImageItem>().apply {
+    fun toNowPlayingItemList(results: List<Results>): List<NowPlayingItem> {
+        return mutableListOf<NowPlayingItem>().apply {
             results.forEach {
-                add(MovieImageItem(it.posterPath, it.id))
+                add(NowPlayingItem(it.posterPath, it.id))
             }
         }
     }
