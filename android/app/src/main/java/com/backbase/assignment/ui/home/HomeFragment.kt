@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
@@ -15,14 +14,15 @@ import com.backbase.assignment.R
 import com.backbase.assignment.databinding.FragmentHomeBinding
 import com.backbase.assignment.ui.home.adapter.MostPopularAdapter
 import com.backbase.assignment.ui.home.adapter.PlayingNowAdapter
-import com.backbase.assignment.ui.home.mapper.MoviesUiMapper
 import com.backbase.assignment.ui.home.model.MostPopularItem
 import com.backbase.assignment.ui.home.model.MovieImageItem
 import com.flagos.common.getViewModel
 import com.flagos.data.api.ApiHelper
 import com.flagos.data.api.RetrofitBuilder
 import com.flagos.data.repository.MovieDbRepository
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -32,6 +32,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var playingNowAdapter: PlayingNowAdapter
     private lateinit var mostPopularAdapter: MostPopularAdapter
+
+    private var getMostPopularMoviesJob: Job? = null
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -68,9 +70,7 @@ class HomeFragment : Fragment() {
     private fun initObservers() {
         with(viewModel) {
             onPlayingNowMoviesRetrieved.observe(viewLifecycleOwner, { setPlayingNowSection(it) })
-            viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-                movies.collectLatest { setMostPopularSection(it) }
-            }
+            runGetMostPopularMovies { movies.collectLatest { setMostPopularSection(it) } }
         }
     }
 
@@ -88,5 +88,15 @@ class HomeFragment : Fragment() {
             sectionMostPopular.root.visibility = VISIBLE
             mostPopularAdapter.submitData(items)
         }
+    }
+
+    private fun runGetMostPopularMovies(getMostPopularMovies: suspend () -> Unit) {
+        getMostPopularMoviesJob?.cancel()
+        getMostPopularMoviesJob = lifecycleScope.launch { getMostPopularMovies() }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        getMostPopularMoviesJob?.cancel()
     }
 }
