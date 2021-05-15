@@ -2,20 +2,20 @@ package com.flagos.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class MoviesData(
-    @SerializedName("dates") val dates: Dates,
+data class MovieResponses(
+    @SerializedName("dates") val dates: DatesResponse,
     @SerializedName("page") val page: Int,
-    @SerializedName("results") val results: List<Results>,
+    @SerializedName("results") val results: List<ResultsResponse>,
     @SerializedName("total_pages") val totalPages: Int,
     @SerializedName("total_results") val totalResults: Int
 )
 
-data class Dates(
+data class DatesResponse(
     @SerializedName("maximum") val maximum: String,
     @SerializedName("minimum") val minimum: String
 )
 
-data class Results(
+data class ResultsResponse(
     @SerializedName("adult") val adult: Boolean,
     @SerializedName("backdrop_path") val backdropPath: String,
     @SerializedName("genre_ids") val genreIds: List<Int>,

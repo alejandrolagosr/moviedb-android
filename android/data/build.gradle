@@ -9,6 +9,8 @@ java {
 }
 
 dependencies {
+    api project(':domain')
+
     def generalDependencies = rootProject.ext.generalDependencies
     implementation generalDependencies.kotlin
     implementation generalDependencies.coreKtx

@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.assignment.databinding.ItemMovieGenreBinding
 import com.backbase.assignment.ui.detail.adapter.viewholder.GenreViewHolder
-import com.backbase.assignment.ui.detail.model.GenreItem
+import com.flagos.domain.detail.model.GenreItem
 import com.flagos.common.inflater
 
-class GenresAdapter() : ListAdapter<GenreItem, RecyclerView.ViewHolder>(GenreItemDiff()) {
+class GenresAdapter : ListAdapter<GenreItem, RecyclerView.ViewHolder>(GenreItemDiff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = parent.inflater

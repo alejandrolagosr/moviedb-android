@@ -1,6 +1,6 @@
 package com.flagos.data.api
 
-class ApiHelper(private val movieDbApi: MovieDbApi) {
+class MovieDbClient(private val movieDbApi: MovieDbApi) {
 
     suspend fun getNowPlayingMovies() = movieDbApi.getNowPlayingMovies()
 

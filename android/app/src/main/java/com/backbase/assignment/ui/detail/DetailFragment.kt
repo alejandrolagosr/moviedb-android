@@ -11,20 +11,25 @@ import androidx.navigation.fragment.navArgs
 import com.backbase.assignment.databinding.FragmentDetailBinding
 import com.backbase.assignment.ui.MainActivity
 import com.backbase.assignment.ui.detail.adapter.GenresAdapter
-import com.backbase.assignment.ui.detail.model.MovieDetailItem
 import com.backbase.assignment.ui.extensions.loadImageFromUrl
 import com.backbase.assignment.ui.home.HomeViewModel.Companion.POSTER_PATH
 import com.flagos.common.getViewModel
-import com.flagos.data.api.ApiHelper
+import com.flagos.data.api.MovieDbClient
+import com.flagos.data.api.MovieServiceImpl
 import com.flagos.data.api.RetrofitBuilder
-import com.flagos.data.repository.MovieDbRepository
+import com.flagos.data.repository.MovieDbRepositoryImpl
+import com.flagos.domain.detail.model.MovieDetailItem
+import com.flagos.domain.usecase.PlayingNowMoviesUseCase
 
 class DetailFragment : Fragment() {
 
     private val args: DetailFragmentArgs by navArgs()
-    private val apiHelper by lazy { ApiHelper(RetrofitBuilder.movieDbApi) }
-    private val movieDbRepository by lazy { MovieDbRepository(apiHelper) }
-    private val viewModel by lazy { getViewModel { DetailViewModel(args.movieId, movieDbRepository) } }
+
+    private val movieDbClient by lazy { MovieDbClient(RetrofitBuilder.movieDbApi) }
+    private val moviesService by lazy { MovieServiceImpl(movieDbClient) }
+    private val playingNowRepository by lazy { MovieDbRepositoryImpl(moviesService) }
+    private val playingNowMoviesUseCase by lazy { PlayingNowMoviesUseCase(playingNowRepository) }
+    private val viewModel by lazy { getViewModel { DetailViewModel(args.movieId, playingNowMoviesUseCase) } }
 
     private lateinit var adapter: GenresAdapter
 

@@ -14,23 +14,29 @@ import com.backbase.assignment.R
 import com.backbase.assignment.databinding.FragmentHomeBinding
 import com.backbase.assignment.ui.home.adapter.MostPopularAdapter
 import com.backbase.assignment.ui.home.adapter.PlayingNowAdapter
-import com.flagos.framework.home.model.MostPopularItem
-import com.flagos.framework.home.model.NowPlayingItem
+import com.flagos.framework.home.model.MostPopularMovieItem
 import com.flagos.common.getViewModel
-import com.flagos.data.api.ApiHelper
+import com.flagos.data.api.MovieDbClient
+import com.flagos.data.api.MovieServiceImpl
 import com.flagos.data.api.RetrofitBuilder
-import com.flagos.data.repository.MovieDbRepository
-import com.flagos.framework.home.usecase.MovieDbUseCase
+import com.flagos.data.repository.MostPopularMoviesRepositoryImpl
+import com.flagos.data.repository.MovieDbRepositoryImpl
+import com.flagos.domain.usecase.PlayingNowMoviesUseCase
+import com.flagos.framework.home.usecase.MostPopularMoviesUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
-    private val apiHelper by lazy { ApiHelper(RetrofitBuilder.movieDbApi) }
-    private val movieDbRepository by lazy { MovieDbRepository(apiHelper) }
-    private val movieDbUseCase by lazy { MovieDbUseCase(movieDbRepository) }
-    private val viewModel by lazy { getViewModel { HomeViewModel(movieDbUseCase, movieDbRepository) } }
+    private val movieDbClient by lazy { MovieDbClient(RetrofitBuilder.movieDbApi) }
+    private val moviesService by lazy { MovieServiceImpl(movieDbClient) }
+    private val movieDbRepository by lazy { MostPopularMoviesRepositoryImpl(movieDbClient) }
+    private val playingNowRepository by lazy { MovieDbRepositoryImpl(moviesService) }
+    private val playingNowMoviesUseCase by lazy { PlayingNowMoviesUseCase(playingNowRepository) }
+    private val mostPopularMoviesUseCase by lazy { MostPopularMoviesUseCase(movieDbRepository) }
+
+    private val viewModel by lazy { getViewModel { HomeViewModel(mostPopularMoviesUseCase, playingNowMoviesUseCase) } }
 
     private lateinit var playingNowAdapter: PlayingNowAdapter
     private lateinit var mostPopularAdapter: MostPopularAdapter
@@ -76,7 +82,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setPlayingNowSection(items: List<NowPlayingItem>) {
+    private fun setPlayingNowSection(items: List<com.flagos.domain.home.model.NowPlayingItem>) {
         with(binding) {
             sectionPlayingNow.textSectionTitle.text = getString(R.string.text_playing_now)
             sectionPlayingNow.root.visibility = VISIBLE
@@ -84,7 +90,7 @@ class HomeFragment : Fragment() {
         playingNowAdapter.submitList(items)
     }
 
-    private suspend fun setMostPopularSection(items: PagingData<MostPopularItem>) {
+    private suspend fun setMostPopularSection(items: PagingData<MostPopularMovieItem>) {
         with(binding) {
             sectionMostPopular.textSectionTitle.text = getString(R.string.text_most_popular)
             sectionMostPopular.root.visibility = VISIBLE

@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.backbase.assignment.databinding.ItemMoviePlayingNowBinding
 import com.backbase.assignment.ui.extensions.loadImageFromUrl
 import com.backbase.assignment.ui.home.HomeViewModel.Companion.POSTER_PATH
-import com.flagos.framework.home.model.NowPlayingItem
+import com.flagos.domain.home.model.NowPlayingItem
 
 class NowPlayingImageViewHolder(
     private val binding: ItemMoviePlayingNowBinding,

@@ -1,4 +1,4 @@
-package com.backbase.assignment.ui.detail.model
+package com.flagos.domain.detail.model
 
 data class MovieDetailItem(
     val porterPath: String,

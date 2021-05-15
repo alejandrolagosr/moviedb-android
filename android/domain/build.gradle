@@ -1,0 +1,10 @@
+plugins {
+    id 'kotlin'
+}
+
+dependencies {
+    def generalDependencies = rootProject.ext.generalDependencies
+    implementation generalDependencies.kotlin
+    implementation generalDependencies.coreKtx
+    implementation generalDependencies.coroutines
+}

@@ -6,11 +6,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.assignment.databinding.ItemMoviePlayingNowBinding
 import com.backbase.assignment.ui.home.adapter.viewholder.NowPlayingImageViewHolder
-import com.flagos.framework.home.model.NowPlayingItem
+import com.flagos.domain.home.model.NowPlayingItem
 import com.flagos.common.inflater
 
-class PlayingNowAdapter(private val onMovieClicked: (Int) -> Unit) :
-    ListAdapter<NowPlayingItem, RecyclerView.ViewHolder>(NowPlayingItemDiff()) {
+class PlayingNowAdapter(
+    private val onMovieClicked: (Int) -> Unit
+) : ListAdapter<NowPlayingItem, RecyclerView.ViewHolder>(NowPlayingItemDiff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = parent.inflater

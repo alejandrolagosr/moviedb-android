@@ -6,7 +6,7 @@ import com.backbase.assignment.R
 import com.backbase.assignment.databinding.ItemMovieMostPopularBinding
 import com.backbase.assignment.ui.extensions.loadImageFromUrl
 import com.backbase.assignment.ui.home.HomeViewModel.Companion.POSTER_PATH
-import com.flagos.framework.home.model.MostPopularItem
+import com.flagos.framework.home.model.MostPopularMovieItem
 
 private const val PERCENTAGE = "%"
 
@@ -18,7 +18,7 @@ class MostPopularViewHolder(
     private val onMovieClicked: (Int) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    private lateinit var currentItem: MostPopularItem
+    private lateinit var currentItem: MostPopularMovieItem
     private var greenColor: Int = NO_RESOURCE_ID
     private var yellowColor: Int = NO_RESOURCE_ID
 
@@ -29,7 +29,7 @@ class MostPopularViewHolder(
         binding.root.setOnClickListener { onMovieClicked.invoke(currentItem.id) }
     }
 
-    fun bind(item: MostPopularItem) {
+    fun bind(item: MostPopularMovieItem) {
         currentItem = item
         with(binding) {
             val rating = item.rating

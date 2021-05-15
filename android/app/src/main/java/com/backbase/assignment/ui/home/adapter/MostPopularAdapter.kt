@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.backbase.assignment.databinding.ItemMovieMostPopularBinding
 import com.backbase.assignment.ui.home.adapter.viewholder.MostPopularViewHolder
-import com.flagos.framework.home.model.MostPopularItem
+import com.flagos.framework.home.model.MostPopularMovieItem
 import com.flagos.common.inflater
 
 class MostPopularAdapter(private val onMovieClicked: (Int) -> Unit) :
-    PagingDataAdapter<MostPopularItem, RecyclerView.ViewHolder>(MostPopularItemDiff()) {
+    PagingDataAdapter<MostPopularMovieItem, RecyclerView.ViewHolder>(MostPopularItemDiff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = parent.inflater
@@ -21,8 +21,8 @@ class MostPopularAdapter(private val onMovieClicked: (Int) -> Unit) :
         getItem(position)?.let { (holder as MostPopularViewHolder).bind(it) }
     }
 
-    private class MostPopularItemDiff : DiffUtil.ItemCallback<MostPopularItem>() {
-        override fun areItemsTheSame(oldItem: MostPopularItem, newItem: MostPopularItem): Boolean = oldItem.id == newItem.id
-        override fun areContentsTheSame(oldItem: MostPopularItem, newItem: MostPopularItem): Boolean = oldItem == newItem
+    private class MostPopularItemDiff : DiffUtil.ItemCallback<MostPopularMovieItem>() {
+        override fun areItemsTheSame(oldItem: MostPopularMovieItem, newItem: MostPopularMovieItem): Boolean = oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: MostPopularMovieItem, newItem: MostPopularMovieItem): Boolean = oldItem == newItem
     }
 }

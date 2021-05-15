@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package com.flagos.common
 
 import androidx.lifecycle.ViewModel
