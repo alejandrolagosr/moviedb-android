@@ -61,4 +61,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_movie_detail_overview" />
+
+    <include
+        android:id="@+id/layout_error"
+        layout="@layout/layout_error"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/layout_loader"
+        layout="@layout/layout_loader"
+        tools:visibility="gone"
+        android:visibility="visible" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_normal_ui"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="image_movie_detail, text_movie_title, text_movie_release_date, text_movie_detail_overview_title, text_movie_detail_overview, recycler" />
 </androidx.constraintlayout.widget.ConstraintLayout>
