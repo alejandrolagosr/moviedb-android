@@ -1,6 +1,6 @@
 # Mobile Assignment CS
 
-For this exercise I decided to use the Single Activity principle, additionally Clean Architecture as a pattern through modules, so in the project structure it looks as follows:
+For this exercise I decided to use the Single Activity principle, additionally Clean Architecture as a pattern through modules, MVVM, Jetapck (view bindings, nav component, list adapter) so in the project structure it looks as follows:
     - App: Everything related to the graphical interface such as Fragments, Activity, ViewModels, Adapters, ViewHolders
     - Domain: Everything related to business logic, data conversions and connection with the data source
     - Framework: Practically a domain extension, necessary for the use of Paging and its dependency with Android APIs
