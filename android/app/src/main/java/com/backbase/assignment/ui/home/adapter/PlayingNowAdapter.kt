@@ -28,7 +28,7 @@ class PlayingNowAdapter(
     override fun getItemCount() = currentList.size
 
     private class NowPlayingItemDiff : DiffUtil.ItemCallback<NowPlayingItem>() {
-        override fun areItemsTheSame(oldItem: NowPlayingItem, newItem: NowPlayingItem): Boolean = oldItem.movieId == newItem.movieId
+        override fun areItemsTheSame(oldItem: NowPlayingItem, newItem: NowPlayingItem): Boolean = oldItem.id == newItem.id
         override fun areContentsTheSame(oldItem: NowPlayingItem, newItem: NowPlayingItem): Boolean = oldItem == newItem
     }
 }

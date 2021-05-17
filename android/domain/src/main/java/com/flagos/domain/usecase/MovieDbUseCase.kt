@@ -3,7 +3,7 @@ package com.flagos.domain.usecase
 import com.flagos.domain.repository.MovieDbRepository
 import com.flagos.domain.detail.model.MovieDetailItem
 import com.flagos.domain.detail.model.MovieErrorItem
-import com.flagos.domain.home.model.NowPlayingItem
+import com.flagos.domain.home.model.MoviesItem
 import com.flagos.domain.retrofit.NetworkResponse
 import com.flagos.domain.retrofit.NetworkResponse.NetworkError
 import com.flagos.domain.retrofit.NetworkResponse.ApiError
@@ -35,7 +35,17 @@ class MovieDbUseCase (
             .conflate()
     }
 
-    fun getPlayingNowMovies(): Flow<List<NowPlayingItem>> {
-        return movieDbRepository.getPlayingNowMovies().flowOn(dispatcher).conflate()
+    fun getPlayingNowMovies(): Flow<NetworkResponse<MoviesItem, MovieErrorItem>> {
+        return movieDbRepository.getPlayingNowMovies()
+            .map { result ->
+                when(result){
+                    is Success -> Success(result.body)
+                    is ApiError -> ApiError(result.body)
+                    is NetworkError -> NetworkError(result.error)
+                    is UnknownError -> UnknownError(result.error)
+                }
+            }
+            .flowOn(dispatcher)
+            .conflate()
     }
 }

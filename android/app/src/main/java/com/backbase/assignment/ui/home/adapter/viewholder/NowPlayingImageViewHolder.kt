@@ -14,11 +14,11 @@ class NowPlayingImageViewHolder(
     private lateinit var currentItem: NowPlayingItem
 
     init {
-        binding.imagePlayingNow.setOnClickListener { onMovieClicked.invoke(currentItem.movieId) }
+        binding.imagePlayingNow.setOnClickListener { onMovieClicked.invoke(currentItem.id) }
     }
 
     fun bind(item: NowPlayingItem) {
         currentItem = item
-        binding.imagePlayingNow.loadImageFromUrl(POSTER_PATH.plus(item.posterPath))
+        binding.imagePlayingNow.loadImageFromUrl(POSTER_PATH.plus(item.poster_path))
     }
 }
