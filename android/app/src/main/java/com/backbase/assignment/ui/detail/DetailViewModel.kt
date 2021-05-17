@@ -9,7 +9,7 @@ import com.flagos.domain.retrofit.NetworkResponse.NetworkError
 import com.flagos.domain.retrofit.NetworkResponse.ApiError
 import com.flagos.domain.retrofit.NetworkResponse.UnknownError
 import com.flagos.domain.retrofit.NetworkResponse.Success
-import com.flagos.domain.usecase.PlayingNowMoviesUseCase
+import com.flagos.domain.usecase.MovieDbUseCase
 import com.backbase.assignment.ui.detail.DetailViewModel.MovieDetailUiState.OnShowError
 import com.backbase.assignment.ui.detail.DetailViewModel.MovieDetailUiState.OnShowDetail
 import com.backbase.assignment.ui.detail.DetailViewModel.MovieDetailUiState.OnShowLoading
@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 
 class DetailViewModel(
     private val movieId: Int,
-    private val playingNowMoviesUseCase: PlayingNowMoviesUseCase
+    private val playingNowMoviesUseCase: MovieDbUseCase
 ) : ViewModel() {
 
     private var _onMovieDetailStateChanged = MutableLiveData<MovieDetailUiState>()

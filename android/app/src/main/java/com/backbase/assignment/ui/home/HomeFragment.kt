@@ -21,7 +21,7 @@ import com.flagos.data.api.MovieServiceImpl
 import com.flagos.data.api.retrofit.RetrofitBuilder
 import com.flagos.data.repository.MostPopularMoviesRepositoryImpl
 import com.flagos.data.repository.MovieDbRepositoryImpl
-import com.flagos.domain.usecase.PlayingNowMoviesUseCase
+import com.flagos.domain.usecase.MovieDbUseCase
 import com.flagos.framework.home.usecase.MostPopularMoviesUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
     private val moviesService by lazy { MovieServiceImpl(movieDbClient) }
     private val movieDbRepository by lazy { MostPopularMoviesRepositoryImpl(movieDbClient) }
     private val playingNowRepository by lazy { MovieDbRepositoryImpl(moviesService) }
-    private val playingNowMoviesUseCase by lazy { PlayingNowMoviesUseCase(playingNowRepository) }
+    private val playingNowMoviesUseCase by lazy { MovieDbUseCase(playingNowRepository) }
     private val mostPopularMoviesUseCase by lazy { MostPopularMoviesUseCase(movieDbRepository) }
 
     private val viewModel by lazy { getViewModel { HomeViewModel(mostPopularMoviesUseCase, playingNowMoviesUseCase) } }

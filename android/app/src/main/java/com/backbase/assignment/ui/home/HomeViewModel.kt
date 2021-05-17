@@ -5,7 +5,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.flagos.framework.home.model.MostPopularMovieItem
 import com.flagos.domain.home.model.NowPlayingItem
-import com.flagos.domain.usecase.PlayingNowMoviesUseCase
+import com.flagos.domain.usecase.MovieDbUseCase
 import com.flagos.framework.home.usecase.MostPopularMoviesUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val mostPopularMoviesUseCase: MostPopularMoviesUseCase,
-    private val playingNowMoviesUseCase: PlayingNowMoviesUseCase,
+    private val playingNowMoviesUseCase: MovieDbUseCase,
 ) : ViewModel() {
 
     private var _onPlayingNowMoviesRetrieved = MutableLiveData<List<NowPlayingItem>>()

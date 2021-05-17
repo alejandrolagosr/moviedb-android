@@ -30,7 +30,7 @@ import com.flagos.data.utils.NORMAL_DATE
 import com.flagos.data.utils.UI_DATE
 import com.flagos.data.utils.getFormattedDate
 import com.flagos.domain.detail.model.MovieDetailItem
-import com.flagos.domain.usecase.PlayingNowMoviesUseCase
+import com.flagos.domain.usecase.MovieDbUseCase
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_INDEFINITE
 
 class DetailFragment : Fragment() {
@@ -39,9 +39,9 @@ class DetailFragment : Fragment() {
 
     private val movieDbClient by lazy { MovieDbClient(RetrofitBuilder.movieDbApi) }
     private val moviesService by lazy { MovieServiceImpl(movieDbClient) }
-    private val playingNowRepository by lazy { MovieDbRepositoryImpl(moviesService) }
-    private val playingNowMoviesUseCase by lazy { PlayingNowMoviesUseCase(playingNowRepository) }
-    private val viewModel by lazy { getViewModel { DetailViewModel(args.movieId, playingNowMoviesUseCase) } }
+    private val movieDbRepository by lazy { MovieDbRepositoryImpl(moviesService) }
+    private val movieDbUseCase by lazy { MovieDbUseCase(movieDbRepository) }
+    private val viewModel by lazy { getViewModel { DetailViewModel(args.movieId, movieDbUseCase) } }
 
     private lateinit var adapter: GenresAdapter
 
