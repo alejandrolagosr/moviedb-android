@@ -1,9 +1,9 @@
 package com.flagos.domain.detail.model
 
 data class MovieDetailItem(
-    val porterPath: String,
+    val poster_path: String,
     val title: String,
-    val releaseDate: String,
+    val release_date: String,
     val overview: String,
     val genres: List<GenreItem>
 )

@@ -16,8 +16,11 @@ import com.backbase.assignment.ui.home.HomeViewModel.Companion.POSTER_PATH
 import com.flagos.common.getViewModel
 import com.flagos.data.api.MovieDbClient
 import com.flagos.data.api.MovieServiceImpl
-import com.flagos.data.api.RetrofitBuilder
+import com.flagos.data.api.retrofit.RetrofitBuilder
 import com.flagos.data.repository.MovieDbRepositoryImpl
+import com.flagos.data.utils.NORMAL_DATE
+import com.flagos.data.utils.UI_DATE
+import com.flagos.data.utils.getFormattedDate
 import com.flagos.domain.detail.model.MovieDetailItem
 import com.flagos.domain.usecase.PlayingNowMoviesUseCase
 
@@ -68,14 +71,15 @@ class DetailFragment : Fragment() {
     private fun initObservers() {
         with(viewModel) {
             onMovieDetailRetrieved.observe(viewLifecycleOwner, { setMovieDetail(it) })
+            onError.observe(viewLifecycleOwner, { /*TODO: Put a snackbar*/ })
         }
     }
 
     private fun setMovieDetail(detail: MovieDetailItem) {
         with(binding) {
-            imageMovieDetail.loadImageFromUrl(POSTER_PATH.plus(detail.porterPath))
+            imageMovieDetail.loadImageFromUrl(POSTER_PATH.plus(detail.poster_path))
             textMovieTitle.text = detail.title
-            textMovieReleaseDate.text = detail.releaseDate
+            textMovieReleaseDate.text = getFormattedDate(detail.release_date, NORMAL_DATE, UI_DATE)
             textMovieDetailOverview.text = detail.overview
             adapter.submitList(detail.genres)
         }

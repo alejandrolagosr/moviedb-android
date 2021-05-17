@@ -1,7 +1,9 @@
-package com.flagos.data.api
+package com.flagos.data.api.retrofit
 
-import com.flagos.data.model.MovieDetailResponse
 import com.flagos.data.model.MovieResponses
+import com.flagos.domain.detail.model.MovieDetailItem
+import com.flagos.domain.detail.model.MovieErrorItem
+import com.flagos.domain.retrofit.NetworkResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -19,5 +21,5 @@ interface MovieDbApi {
     suspend fun getMostPopularMovies(@Query("page") page: Int): MovieResponses
 
     @GET("movie/{movieId}?language=${DEFAULT_LANGUAGE}&api_key=${API_KEY}")
-    suspend fun getMovieDetail(@Path("movieId") movieId: Int): MovieDetailResponse
+    suspend fun getMovieDetail(@Path("movieId") movieId: Int): NetworkResponse<MovieDetailItem, MovieErrorItem>
 }

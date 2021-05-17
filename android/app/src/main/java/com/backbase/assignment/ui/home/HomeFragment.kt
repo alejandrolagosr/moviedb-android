@@ -18,7 +18,7 @@ import com.flagos.framework.home.model.MostPopularMovieItem
 import com.flagos.common.getViewModel
 import com.flagos.data.api.MovieDbClient
 import com.flagos.data.api.MovieServiceImpl
-import com.flagos.data.api.RetrofitBuilder
+import com.flagos.data.api.retrofit.RetrofitBuilder
 import com.flagos.data.repository.MostPopularMoviesRepositoryImpl
 import com.flagos.data.repository.MovieDbRepositoryImpl
 import com.flagos.domain.usecase.PlayingNowMoviesUseCase
