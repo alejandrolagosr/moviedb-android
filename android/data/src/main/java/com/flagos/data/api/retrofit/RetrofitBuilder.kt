@@ -1,4 +1,4 @@
-package com.flagos.data.api
+package com.flagos.data.api.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -10,6 +10,7 @@ object RetrofitBuilder {
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .addCallAdapterFactory(NetworkResponseAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

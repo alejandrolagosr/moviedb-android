@@ -1,13 +1,10 @@
 package com.flagos.framework.home.mapper
 
-import com.flagos.common.UI_DATE
-import com.flagos.common.NORMAL_DATE
-import com.flagos.common.getFormattedDate
 import com.flagos.data.model.ResultsResponse
+import com.flagos.data.utils.NORMAL_DATE
+import com.flagos.data.utils.UI_DATE
+import com.flagos.data.utils.getFormattedDate
 import com.flagos.framework.home.model.MostPopularMovieItem
-
-private const val BLANK = ""
-private const val DOT = "."
 
 class MostPopularMoviesUiMapper {
 
@@ -19,5 +16,10 @@ class MostPopularMoviesUiMapper {
                 add(MostPopularMovieItem(it.id, it.posterPath, it.title, formattedDate, percentage))
             }
         }
+    }
+
+    companion object {
+        const val BLANK = ""
+        const val DOT = "."
     }
 }
