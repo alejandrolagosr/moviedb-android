@@ -30,6 +30,7 @@ ext {
     mockito_inline_version = '3.4.6'
     core_testing_version = '2.1.0'
     android_test_version = '1.1.1'
+    hamcrest_version = '2.2'
 
     generalDependencies = [
             kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
@@ -60,6 +61,7 @@ ext {
             mockitoKotlin     : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version",
             mockitoInline     : "org.mockito:mockito-inline:$mockito_inline_version",
             androidTest       : "androidx.test.ext:junit:$android_test_version",
+            hamcrest          : "org.hamcrest:hamcrest-library:$hamcrest_version",
             coroutinesTest    : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version",
             coreTesting       : "androidx.arch.core:core-testing:$core_testing_version",
             espresso          : "androidx.test.espresso:espresso-core:$espresso_version"
