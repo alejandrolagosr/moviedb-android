@@ -18,7 +18,6 @@ import com.backbase.assignment.ui.extensions.loadImageFromUrl
 import com.backbase.assignment.ui.home.HomeViewModel.Companion.POSTER_PATH
 import com.backbase.assignment.ui.detail.DetailViewModel.MovieDetailUiState.OnShowError
 import com.backbase.assignment.ui.detail.DetailViewModel.MovieDetailUiState.OnShowDetail
-import com.backbase.assignment.ui.detail.DetailViewModel.MovieDetailUiState.OnShowLoading
 import com.flagos.common.action
 import com.flagos.common.getViewModel
 import com.flagos.common.snack
@@ -31,7 +30,7 @@ import com.flagos.data.utils.UI_DATE
 import com.flagos.data.utils.getFormattedDate
 import com.flagos.domain.detail.model.MovieDetailItem
 import com.flagos.domain.usecase.MovieDbUseCase
-import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_INDEFINITE
+import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_LONG
 
 class DetailFragment : Fragment() {
 
@@ -80,13 +79,15 @@ class DetailFragment : Fragment() {
     private fun initObservers() {
         with(viewModel) {
             onMovieDetailRetrieved.observe(viewLifecycleOwner, { setUiState(it) })
+            onShowLoader.observe(viewLifecycleOwner, { showLoader(it) })
+
+            fetchDetail()
         }
     }
 
     private fun setUiState(state: DetailViewModel.MovieDetailUiState) {
         when(state) {
             is OnShowDetail -> setMovieDetail(state.movieDetail)
-            is OnShowLoading -> showLoader(state.showLoader)
             is OnShowError -> setErrorState(state.message)
         }
     }
@@ -109,6 +110,6 @@ class DetailFragment : Fragment() {
     private fun setErrorState(message: String) {
         binding.layoutError.root.visibility = VISIBLE
         val errorMessage = getString(R.string.text_snack_bar_error, message)
-        binding.root.snack(errorMessage, LENGTH_INDEFINITE) { action(R.string.text_retry) { viewModel.fetchDetail() } }
+        binding.root.snack(errorMessage, LENGTH_LONG) { action(R.string.text_retry) { viewModel.fetchDetail() } }
     }
 }
