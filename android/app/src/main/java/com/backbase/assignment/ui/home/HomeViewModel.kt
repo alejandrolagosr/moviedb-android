@@ -3,7 +3,6 @@ package com.backbase.assignment.ui.home
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.flagos.domain.detail.model.MovieDetailItem
 import com.flagos.framework.home.model.MostPopularMovieItem
 import com.flagos.domain.home.model.NowPlayingItem
 import com.flagos.domain.retrofit.NetworkResponse.Success
@@ -22,11 +21,7 @@ class HomeViewModel(
     val onPlayingNowMoviesRetrieved: LiveData<List<NowPlayingItem>>
         get() = _onPlayingNowMoviesRetrieved
 
-    init {
-        fetchPlayingNow()
-    }
-
-    private fun fetchPlayingNow() {
+    fun fetchPlayingNow() {
         viewModelScope.launch {
             playingNowMoviesUseCase.getPlayingNowMovies()
                 .collect { result ->
@@ -39,11 +34,6 @@ class HomeViewModel(
 
     fun fetchMostPopular(): Flow<PagingData<MostPopularMovieItem>> {
         return mostPopularMoviesUseCase.getMostPopularMovies().cachedIn(viewModelScope)
-    }
-
-    sealed class MovieDetailUiState {
-        data class OnShowDetail(val movieDetail: MovieDetailItem) : MovieDetailUiState()
-        data class OnShowError(val message: String) : MovieDetailUiState()
     }
 
     companion object {

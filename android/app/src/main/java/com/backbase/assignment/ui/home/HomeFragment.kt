@@ -79,6 +79,8 @@ class HomeFragment : Fragment() {
         with(viewModel) {
             onPlayingNowMoviesRetrieved.observe(viewLifecycleOwner, { setPlayingNowSection(it) })
             runGetMostPopularMovies { fetchMostPopular().collectLatest { setMostPopularSection(it) } }
+
+            fetchPlayingNow()
         }
     }
 
