@@ -4,7 +4,6 @@ import com.flagos.domain.detail.model.MovieDetailItem
 import com.flagos.domain.detail.model.MovieErrorItem
 import com.flagos.domain.home.model.MoviesItem
 import com.flagos.domain.repository.MovieDbRepository
-import com.flagos.domain.retrofit.NetworkResponse
 import com.flagos.domain.retrofit.NetworkResponse.*
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi

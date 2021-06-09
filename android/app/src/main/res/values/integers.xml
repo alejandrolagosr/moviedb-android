@@ -2,8 +2,5 @@
 <resources>
 
     <!-- Shimmer -->
-    <integer name="shimmer_duration">2000</integer>
-    <integer name="shimmer_angle">0</integer>
-    <integer name="shimmer_dept_column_weight">1</integer>
 
 </resources>

@@ -2,12 +2,9 @@ package com.backbase.assignment.ui.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.backbase.assignment.MainCoroutineRule
-import com.backbase.assignment.ui.detail.DetailViewModel
-import com.flagos.domain.detail.model.MovieDetailItem
 import com.flagos.domain.detail.model.MovieErrorItem
 import com.flagos.domain.home.model.MoviesItem
 import com.flagos.domain.home.model.NowPlayingItem
-import com.flagos.domain.retrofit.NetworkResponse
 import com.flagos.domain.retrofit.NetworkResponse.*
 import com.flagos.domain.usecase.MovieDbUseCase
 import com.flagos.framework.home.usecase.MostPopularMoviesUseCase
@@ -16,15 +13,12 @@ import com.nhaarman.mockitokotlin2.stub
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
-import org.hamcrest.MatcherAssert
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsEqual
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito
 import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnitRunner
 import java.io.IOException
