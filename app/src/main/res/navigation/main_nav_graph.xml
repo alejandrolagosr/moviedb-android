@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/home_fragment_dest">
+
+    <fragment
+        android:id="@+id/home_fragment_dest"
+        android:name="com.backbase.assignment.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_dest_to_detail_dest"
+            app:destination="@id/detail_fragment_dest"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/detail_fragment_dest"
+        android:name="com.backbase.assignment.ui.detail.DetailFragment"
+        android:label="Movie Detail"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+    </fragment>
+</navigation>

@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">MovieBox</string>
+    <string name="text_playing_now">Playing now</string>
+    <string name="text_most_popular">Most popular</string>
+    <string name="text_overview">Overview</string>
+    <string name="text_retry">Retry</string>
+    <string name="text_error">We cannot load this content right now</string>
+    <string name="text_snack_bar_error">Error reason: %1$s</string>
+
+</resources>
