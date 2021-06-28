@@ -11,7 +11,7 @@ import retrofit2.http.Query
 
 private const val DEFAULT_LANGUAGE = "en-US"
 private const val NO_PAGING = "undefined"
-private const val API_KEY = "9ec31697073a095bcd0e7105b0830221"
+private const val API_KEY = "YOUR API KEY"
 
 interface MovieDbApi {
 
