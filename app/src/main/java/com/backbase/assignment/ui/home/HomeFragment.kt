@@ -21,6 +21,7 @@ import com.flagos.data.api.MovieServiceImpl
 import com.flagos.data.api.retrofit.RetrofitBuilder
 import com.flagos.data.repository.MostPopularMoviesRepositoryImpl
 import com.flagos.data.repository.MovieDbRepositoryImpl
+import com.flagos.domain.home.model.NowPlayingItem
 import com.flagos.domain.usecase.MovieDbUseCase
 import com.flagos.framework.home.usecase.MostPopularMoviesUseCase
 import kotlinx.coroutines.Job
@@ -84,7 +85,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setPlayingNowSection(items: List<com.flagos.domain.home.model.NowPlayingItem>) {
+    private fun setPlayingNowSection(items: List<NowPlayingItem>) {
         with(binding) {
             sectionPlayingNow.textSectionTitle.text = getString(R.string.text_playing_now)
             sectionPlayingNow.root.visibility = VISIBLE
