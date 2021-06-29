@@ -1,4 +1,4 @@
-# MovieDB Example App
+# MovieDB Example App 🍿 
 
 For this exercise I decided to use the Single Activity principle, additionally Clean Architecture as a pattern through modules, MVVM, Jetapck (view bindings, nav component, list adapter) so in the project structure it looks as follows:
     - App: Everything related to the graphical interface such as Fragments, Activity, ViewModels, Adapters, ViewHolders
@@ -6,7 +6,7 @@ For this exercise I decided to use the Single Activity principle, additionally C
     - Framework: Practically a domain extension, necessary for the use of Paging and its dependency with Android APIs
     - Data: Data sources, endpoints
 
-## Important Notes
+## Important Notes 
 
 * About the caching requirement for images: I delegated that behavior directly to Glide, so no implementation was necessary.
 * It was also not necessary to create a custom RatingView component as the similar Material component is now stable.
@@ -27,3 +27,10 @@ The project will start growing keeping in mind this, for now we don't have many 
 - Retrofit Gson Converter: GSON converter for JSON responses
 - MockitoKotlin: Mockito for Kotlin unit testing
 - Hamcrest: Matchers for unit testing, make it more readable and efficient
+
+## Screenshots
+
+| Movie Detail      | Home |
+| ----------- | ----------- |
+| ![Screenshot_1624937436](https://user-images.githubusercontent.com/7938140/123827058-ebbb2700-d8c5-11eb-9720-34a1d40955e5.png) | ![Screenshot_1624937429](https://user-images.githubusercontent.com/7938140/123827151-fc6b9d00-d8c5-11eb-96a5-5ef18715f808.png) |
+
