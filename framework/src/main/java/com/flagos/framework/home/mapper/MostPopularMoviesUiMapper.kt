@@ -12,7 +12,8 @@ class MostPopularMoviesUiMapper {
         return mutableListOf<MostPopularMovieItem>().apply {
             results.forEach {
                 val percentage = it.voteAverage.toString().replace(DOT, BLANK).toInt()
-                val formattedDate = getFormattedDate(it.releaseDate, NORMAL_DATE, UI_DATE)
+                var formattedDate: String? = null
+                it.releaseDate?.let { date -> formattedDate = getFormattedDate(date, NORMAL_DATE, UI_DATE) }
                 add(MostPopularMovieItem(it.id, it.posterPath, it.title, formattedDate, percentage))
             }
         }
